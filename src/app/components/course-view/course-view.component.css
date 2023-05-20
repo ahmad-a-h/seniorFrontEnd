@@ -1,0 +1,28 @@
+.field {
+    display: flex;
+}
+
+.session {
+    display: flex
+}
+
+.courseData {
+    border: 1px solid black;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 10px;
+    min-width: 220px;
+    min-height: 70px;
+}
+
+.container {
+    display: flex;
+    all: unset;
+    cursor: pointer;
+}
+
+table {
+    width: 98%;
+    margin: 20px
+}

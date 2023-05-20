@@ -1,0 +1,32 @@
+
+ul{
+    display: flex;
+}
+li, a {
+    all: unset;
+  }
+  li{
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+a{
+    display: flex;
+    justify-content: center;
+}
+
+li.nav-item {
+    position: relative;
+  }
+  
+  li.nav-item:hover span {
+    min-width: 120px;
+  }
+  
+  li.nav-item span {
+    border: 1px solid black;
+    min-width: 70px;
+    transition: min-width 0.3s ease; /* Define transition properties */
+  }
+  

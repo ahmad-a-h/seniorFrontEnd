@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<form [formGroup]="studentForm">
+    <div class="parent" style=" display: flex; justify-content: center; ">
+        <div class="card" >
+            <div class="content" style=" display: flex; justify-content: center; ">
+                <mat-card style=" width: 50%; ">
+                    <mat-card-header>
+                        <mat-card-title>Student Registration</mat-card-title>
+                    </mat-card-header>
+                    <div style="display: flex; flex-direction: row;">
+                        <div style="width: 50%;margin-right: 5%;margin-left: 1%; height: fit-content;">
+                            <mat-card-content style="display: flex; flex-direction:column">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput type="text" formControlName="fName"
+                                        [ngClass]="{ 'ng-invalid': studentForm.get('fName')?.invalid }">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline"
+                                    [ngClass]="{ 'ng-invalid': studentForm.get('lName')?.invalid }">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput type="text" formControlName="lName">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline"
+                                    [ngClass]="{ 'ng-invalid': studentForm.get('email')?.invalid }">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput type="email" formControlName="email">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Courses</mat-label>
+                                    <mat-select formControlName="courseId">
+                                        <mat-option *ngFor="let course of arrayOfCourses" [value]="course.id">
+                                            {{course.course_Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Student Photo</mat-label>
+                                    <ngx-mat-file-input formControlName="photo" placeholder="Basic Input"
+                                        (change)="onFileSelected($event)"></ngx-mat-file-input>
+                                    <mat-icon matSuffix>attach_file</mat-icon>
+                                </mat-form-field>
+                                <button mat-raised-button (click)="onSubmit()" color="primary" style="width: 150px;">Submit</button>
+                            </mat-card-content>
+                        </div>
+                        <div *ngIf="this.img">
+                            <img [src]="this.img" style="max-height: 35%;">
+                        </div>
+                    </div>
+                   
+                </mat-card>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>

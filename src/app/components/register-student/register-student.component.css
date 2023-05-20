@@ -1,0 +1,21 @@
+input.ng-invalid {
+    /* border-color: red; */
+  }
+body{
+    color: white;
+}
+mat-form-field{
+  max-width: 350px;
+}
+.parent{
+  height: 100%;
+  padding: 1%;
+}
+.card{
+  width:90%;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+button{
+  margin-left: 100px;
+}
