@@ -1,0 +1,28 @@
+<div class="container" style="display: flex;">
+    
+    <div style="width: 50%;">
+        <ng-container *ngFor="let item of arrayOfSessions">
+            <mat-card style=" width: 50%; margin-bottom: 10px;margin-left: 10px; ">
+                <mat-card-header (click)="this.joinSession(item.id)">
+                    <mat-card-title [style.color]="'rgb(80, 184, 219)'">
+                        <div class="hover-underline" style="">{{item.title}}</div>
+                    </mat-card-title>
+                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                </mat-card-header>
+                <div>
+                    <div style="width: 50%;margin-right: 5%;margin-left: 1%; height: fit-content;">
+                        <mat-card-content>
+                            <div>
+                                {{formatDateTime(item.startDateTime)}} -
+                                {{ formatDateTime(item.endDateTime).split(' at ')[1] }}
+                            </div>
+                        </mat-card-content>
+                    </div>
+                </div>
+            </mat-card>
+        </ng-container>
+    </div>
+    <div>
+        <mat-icon (click)="this.getData()">refresh</mat-icon>
+    </div>
+</div>

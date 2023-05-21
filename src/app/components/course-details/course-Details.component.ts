@@ -4,10 +4,10 @@ import { BackendApiService } from 'src/app/service/backend-api.service';
 
 @Component({
   selector: 'app-session-view',
-  templateUrl: './session-view.component.html',
-  styleUrls: ['./session-view.component.css']
+  templateUrl: './course-Details.component.html',
+  styleUrls: ['./course-Details.component.css']
 })
-export class SessionViewComponent implements OnInit {
+export class CourseDetailsComponent implements OnInit {
   dataFromService: any;
   studentsList: any
   arrayOfCourses: any;
@@ -33,6 +33,20 @@ export class SessionViewComponent implements OnInit {
     this.service.get('getSessionsByCourseId'+this.courseId).subscribe((Response)=>{
       this.sessionsByCourseId= Response.body
     })
+  }
+  formatDateTime(dateTime): string {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    };
+    console.log(dateTime)
+    const formattedDateTime = new Date(dateTime).toLocaleString(undefined, options);
+    return formattedDateTime;
   }
 
 }

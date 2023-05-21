@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestComponent } from './components/test/test.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateSessionComponent } from './components/session-create/create-session.component';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import { SessionViewComponent } from './components/course-details/session-view.component';
+import { CourseDetailsComponent } from './components/course-details/course-Details.component';
 import {MatButtonModule} from '@angular/material/button';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CourseViewComponent } from './components/course-view/course-view.component';
@@ -31,18 +30,20 @@ import { SessionsGroupComponent } from './components/sessions-nav-bar/nav-bar.co
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SessionViewComponent } from './session-view/session-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     MasterPageComponent,
     SessionsGroupComponent,
     RegisterStudentComponent,
     CreateSessionComponent,
-    SessionViewComponent,
+    CourseViewComponent,
     NavbarComponent,
     CourseViewComponent,
+    CourseDetailsComponent,
+    SessionViewComponent
   ],
   imports: [
     BrowserModule,
