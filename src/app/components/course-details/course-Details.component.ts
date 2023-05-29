@@ -44,7 +44,6 @@ export class CourseDetailsComponent implements OnInit {
       minute: 'numeric',
       hour12: true
     };
-    console.log(dateTime)
     const formattedDateTime = new Date(dateTime).toLocaleString(undefined, options);
     return formattedDateTime;
   }

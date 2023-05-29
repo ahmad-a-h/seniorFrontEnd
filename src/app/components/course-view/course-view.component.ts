@@ -92,10 +92,5 @@ export class CourseViewComponent {
   viewCourse(sessionId:any){
     console.log(sessionId)
   }
-  reDirect(arr:any){
-    console.log(arr)
-    this.router.navigate(["courseDetails"]);
-    // this.service.Data(arr)
 
-  }
 }

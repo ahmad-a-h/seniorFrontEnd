@@ -5,6 +5,7 @@ import { CourseDetailsComponent } from './components/course-details/course-Detai
 import { RegisterStudentComponent } from './components/register-student/register-student.component';
 import { CourseViewComponent } from './components/course-view/course-view.component';
 import { SessionsGroupComponent } from './components/sessions-nav-bar/nav-bar.component';
+import { JoinSessionComponent } from './components/join-session/join-session.component';
 
 const routes: Routes = [
   { path: "", component: MasterPageComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: "student", component: RegisterStudentComponent },
   { path: "course", component: CourseViewComponent },
   { path: "courseDetails", component: CourseDetailsComponent },
-
+  { path: "JoinSession", component: JoinSessionComponent },
+  
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

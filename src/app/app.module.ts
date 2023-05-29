@@ -30,7 +30,8 @@ import { SessionsGroupComponent } from './components/sessions-nav-bar/nav-bar.co
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { SessionViewComponent } from './session-view/session-view.component';
+import { SessionViewComponent } from './components/session-view/session-view.component';
+import { JoinSessionComponent } from './components/join-session/join-session.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SessionViewComponent } from './session-view/session-view.component';
     NavbarComponent,
     CourseViewComponent,
     CourseDetailsComponent,
-    SessionViewComponent
+    SessionViewComponent,
+    JoinSessionComponent
   ],
   imports: [
     BrowserModule,

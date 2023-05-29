@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { BackendApiService } from 'src/app/service/backend-api.service';
 import * as moment_ from 'moment';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 const moment = moment_;
 
 @Component({
   selector: 'create-session',
   templateUrl: './create-session.component.html',
-  styleUrls: ['./create-session.component.css']
+  styleUrls: ['./create-session.component.css'],
+  providers: [DatePipe]
 })
 export class CreateSessionComponent implements OnInit {
   arrayOfCourses: any = []
@@ -27,7 +29,7 @@ export class CreateSessionComponent implements OnInit {
   public startDate = new FormControl(new Date());
   public endDate = new FormControl(new Date());
 
-  constructor(private service: BackendApiService, private router: Router) {
+  constructor(private service: BackendApiService, private router: Router,private datePipe: DatePipe) {
     this.sessionForm = new FormGroup({
       courseID: new FormControl(''),
       title: new FormControl('',Validators.required),
@@ -54,7 +56,6 @@ export class CreateSessionComponent implements OnInit {
   getData() {
     this.service.get('getAllCourses').subscribe((res) => {
       this.arrayOfCourses = res.body
-      console.log(this.arrayOfCourses)
     })
   }
 
@@ -95,26 +96,43 @@ export class CreateSessionComponent implements OnInit {
 
   }
   onSubmit(sessionForm: FormGroup) {
-    this.sessionForm.controls.startDateTime.setValue(this.transformDateToISO(this.startDate.value))
-    this.sessionForm.controls.endDateTime.setValue (this.transformDateToISO(this.endDate.value))
-    console.log()
-    if(this.sessionForm.valid){
-      this.service.post('createSession',this.sessionForm.value).subscribe((resp)=>{
-        Swal.fire({
-          icon: 'success',
-          text: 'Session Has Been Created!',
-          showConfirmButton: false,
-          timer: 1500
+    // console.log(this.startDate.value)
+    var startDate=new Date(this.startDate.value)
+    var endDate= new Date(this.endDate.value)
+    var same = startDate.getTime() - endDate.getTime()
+    if (same<0){
+      this.sessionForm.controls.startDateTime.setValue(this.transformDateToISO(this.startDate.value))
+      this.sessionForm.controls.endDateTime.setValue (this.transformDateToISO(this.endDate.value))
+      console.log(this.sessionForm.value)
+      console.log(this.startDate.value)
+      console.log(this.endDate.value)
+      if(this.sessionForm.valid){
+        this.service.post('createSession',this.sessionForm.value).subscribe((resp)=>{
+          Swal.fire({
+            icon: 'success',
+            position: 'top-end',
+            text: 'Session Has Been Created!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        },(error)=>{
+          console.log(error)
         })
-      },(error)=>{
-        console.log(error)
+      }
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title:"Fix Input Dates",
+        text: "End date can't be less than start date",
+        showConfirmButton: false,
+        timer: 3000
       })
     }
+   
   }
 
   transformDateToISO(date:any){
-    const formattedDateTimeString = this.startDate.value.toISOString();
-    return formattedDateTimeString
+    return this.datePipe.transform(date, 'M/d/yyyy, HH:mm:ss');
   }
 }
 

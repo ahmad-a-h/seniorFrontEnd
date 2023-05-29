@@ -43,6 +43,7 @@ export class RegisterStudentComponent {
             this.service.post('AssignFaceForStudent'+'?studentID='+Response,this.img).subscribe((Response)=>{
             Swal.fire({
               icon: 'success',
+              position: 'top-end',
               text: 'Student Has Been Registered!',
               showConfirmButton: false,
               timer: 1500

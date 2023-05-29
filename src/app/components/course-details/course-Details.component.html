@@ -33,7 +33,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedRow(row)"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
 
@@ -58,12 +58,12 @@
                         <!-- <mat-label> Student Email: </mat-label> -->
                         <input matInput Student Email="Age" [disabled]="true" value="{{student.email}}">
                     </mat-form-field>
-                    <mat-form-field appearance="outline">
-                        <input matInput placeholder="Age" [disabled]="true">
-                    </mat-form-field>
+                    <div *ngIf="student.face">
+                        <img [src]="student.face.faceEncoding" style="max-height: 200px;">
+                    </div>
                 </div>
 
             </mat-expansion-panel>
         </mat-accordion>
     </div>
-</div> -->
+</div> 

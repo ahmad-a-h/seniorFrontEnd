@@ -1,0 +1,70 @@
+<div class="card" style=" margin-top: 50px; margin-left: 30px; display: flex; ">
+    <mat-card style=" width: 50%; ">
+        <mat-card-header>
+            <mat-card-title>{{this.dataFromService.title}}</mat-card-title>
+            <mat-card-subtitle>
+                <div>
+                    <div>
+                        {{this.dataFromService.course.course_Name}} {{this.dataFromService.course.course_Code}}
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <div><mat-label style="color: blue; margin-right: 5px;">Start Date: </mat-label>{{this.formatDateTime(this.dataFromService.startDateTime)}}</div>
+                        <div><mat-label style="color: blue; margin-right: 5px;">End Date: </mat-label>{{this.formatDateTime(this.dataFromService.endDateTime)}}</div>
+                    </div>
+                </div>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <div style="display: flex; flex-direction: row;">
+            <div style="width: 80%;margin-right: 5%;margin-left: 1%; height: fit-content;">
+                <mat-card-content style="display: flex; flex-direction:column;width: 100%;">
+                    <mat-accordion *ngFor="let student of this.dataFromService.course.students">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <div style=" display: flex; justify-content: space-between; width: 80%; ">
+                                    <mat-panel-title>
+                                        <div style=" min-width: 100px; max-width: 200px; ">
+                                            {{student.fName}} {{student.lName}}
+                                        </div>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        <div>
+                                            <mat-label style="color: blue; margin-right: 5px; width: 100px;"> Student Id </mat-label>
+                                            {{student.id}}
+                                            <mat-label style="color: blue; margin-right: 5px;  width: 100px;"> Attended</mat-label>
+                                            Yes?No
+                                        </div>
+                                    </mat-panel-description>
+                                </div>
+                            </mat-expansion-panel-header>
+                            <div>
+                                <div *ngIf="student.face">
+                                    <img [src]="student.face.faceEncoding" style="max-height: 200px;">
+                                </div>
+                            </div>
+                            <!-- <div style=" display: flex; flex-direction: column; width: 25%; ">
+                            <mat-form-field appearance="outline">
+                                <mat-label> Student Email: </mat-label>
+                                <input matInput Student Email="Age" [disabled]="true" value="{{student.email}}">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <input matInput placeholder="Age" [disabled]="true">
+                            </mat-form-field>
+                        </div> -->
+
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </mat-card-content>
+            </div>
+            
+        </div>
+        
+       
+
+    </mat-card>
+    <div style="margin-left: 25px;">
+        <video #videoElement></video>
+        <div *ngIf="this.videoFlag"></div>
+        <button  mat-raised-button (click)="stopVideo()">Stop Video</button>
+    </div>
+</div>
+

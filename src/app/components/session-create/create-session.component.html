@@ -1,6 +1,7 @@
 <form [formGroup]="sessionForm">
 
-  <mat-form-field appearance="fill">
+  <div style=" display: flex; justify-content: center; ">
+     <mat-form-field appearance="outline" style="width: 20%;">
     <mat-label>Courses</mat-label>
     <mat-select formControlName="courseID">
       <mat-option *ngFor="let course of arrayOfCourses" [value]="course.id">
@@ -8,7 +9,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <div class="courseData" *ngIf="this.courseID">
+  </div>
+ 
+  <div class="courseData" *ngIf="this.courseID" style=" display: flex; justify-content: center; ">
     <div class="content" style="width: 50%;">
       <mat-card>
         <mat-card-header>
@@ -23,13 +26,13 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <input matInput [ngxMatDatetimePicker]="start" placeholder="Choose a date" [formControl]="startDate" />
+            <input matInput [ngxMatDatetimePicker]="start" placeholder="Start Date Time" [formControl]="startDate" />
             <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker #start></ngx-mat-datetime-picker>
           </mat-form-field>
           
           <mat-form-field appearance="outline">
-            <input matInput [ngxMatDatetimePicker]="end" placeholder="Choose a date" [formControl]="endDate" />
+            <input matInput [ngxMatDatetimePicker]="end" placeholder="End date Time" [formControl]="endDate" />
             <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker #end></ngx-mat-datetime-picker>
           </mat-form-field>
