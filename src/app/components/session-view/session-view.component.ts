@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendApiService } from '../../service/backend-api.service';
+import { BackendApiService } from 'src/app/service/http/backend-api.service';
 import { Observable, interval } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
 import { Router } from '@angular/router';

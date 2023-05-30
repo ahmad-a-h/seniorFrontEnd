@@ -6,9 +6,11 @@ import { RegisterStudentComponent } from './components/register-student/register
 import { CourseViewComponent } from './components/course-view/course-view.component';
 import { SessionsGroupComponent } from './components/sessions-nav-bar/nav-bar.component';
 import { JoinSessionComponent } from './components/join-session/join-session.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: "", component: MasterPageComponent },
+  { path: "login", component: LoginComponent },
   { path: "session", component: SessionsGroupComponent },
   { path: "student", component: RegisterStudentComponent },
   { path: "course", component: CourseViewComponent },

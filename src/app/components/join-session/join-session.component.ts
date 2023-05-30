@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackendApiService } from 'src/app/service/backend-api.service';
+import { BackendApiService } from 'src/app/service/http/backend-api.service';
 
 
 
@@ -15,6 +15,8 @@ export class JoinSessionComponent implements OnInit {
   @ViewChild('videoElement', { static: false }) videoElement: ElementRef;
   video: HTMLVideoElement;
   videoFlag: boolean= true
+  studentImg: string;
+  dataForPython: {};
   
   // cv: any;
 
@@ -66,14 +68,30 @@ export class JoinSessionComponent implements OnInit {
     }
   }
 
-  stopVideo(): void {
+  capture(): void {
     const video: HTMLVideoElement = this.videoElement.nativeElement;
     const stream = video.srcObject as MediaStream;
-    this.videoFlag = false
-    if (stream) {
-      const tracks = stream.getTracks();
-      tracks.forEach(track => track.stop());
-      video.srcObject = null;
-    }
+    const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+
+  // Set the canvas dimensions to match the video element
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  // Draw the current video frame onto the canvas
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // Get the base64 representation of the canvas image
+  const base64DataUrl = canvas.toDataURL('image/png');
+  console.log(base64DataUrl)
+  this.studentImg = base64DataUrl;
+  console.log(this.dataFromService)
+
+  this.dataForPython = {
+    'image1_base64':this.studentImg,
+    'arrStudent': this.dataFromService.course.students,
+    'sessionId' : this.dataFromService.id
+  }
+
   }
 }

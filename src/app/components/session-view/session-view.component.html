@@ -1,31 +1,33 @@
-<div class="container" style="display: flex;height: 900px; ">
-    <div style="height: fit-content; ">
+<div class="container" style="display: flex; margin: 15px; ">
+    <div style="height: fit-content; margin: 0 5px 0 0;">
         <mat-icon (click)="this.getData()" style=" cursor: pointer; ">refresh</mat-icon>
     </div>
-    <div style="width: 50%;flex-wrap: wrap;display: flex;flex-direction: column;height: 70%;margin-right: 90px;">
+    <div style="width: 100%; display: flex; flex-wrap: wrap; height: fit-content;">
         <ng-container *ngFor="let item of arrayOfSessions">
-            <mat-card style=" width: 50%; margin-bottom: 10px;margin-left: 10px; ">
+            <mat-card style="width: 30%;margin-bottom: 10px;margin-left: 10px;">
                 <mat-card-header (click)="this.joinSession(item)">
                     <mat-card-title [style.color]="'rgb(80, 184, 219)'">
-                        <div class="hover-underline" >{{item.title}}</div>
+                        <div class="hover-underline">{{item.title}}</div>
                     </mat-card-title>
                     <mat-card-subtitle>{{item.course['course_Name']}}</mat-card-subtitle>
                 </mat-card-header>
-                <div style="display: flex;"> 
-                    <div style="width: 50%;margin-right: 5%;margin-left: 1%; height: fit-content;">
+                <div style="display: flex; margin: 0 12px">
+                    <div style="width: 100%;margin-right: 5%;margin-left: 1%; height: fit-content;">
                         <mat-card-content>
+                            <div style="margin:0 0 3px 0">
+                                {{formatDateTime(item.startDateTime).split(' at ')[0] }}
+                            </div>
                             <div>
-                                {{formatDateTime(item.startDateTime)}} -
+                                from {{ formatDateTime(item.startDateTime).split(' at ')[1] }} till
                                 {{ formatDateTime(item.endDateTime).split(' at ')[1] }}
                             </div>
                         </mat-card-content>
                     </div>
-                    <div>	
+                    <div>
                         <mat-icon *ngIf="item.isSessionActive">mic</mat-icon>
                     </div>
                 </div>
             </mat-card>
         </ng-container>
     </div>
-    
 </div>

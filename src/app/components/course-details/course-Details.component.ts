@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackendApiService } from 'src/app/service/backend-api.service';
+import { BackendApiService } from 'src/app/service/http/backend-api.service';
 
 @Component({
   selector: 'app-session-view',

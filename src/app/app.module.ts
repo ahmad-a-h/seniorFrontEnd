@@ -32,6 +32,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SessionViewComponent } from './components/session-view/session-view.component';
 import { JoinSessionComponent } from './components/join-session/join-session.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { JoinSessionComponent } from './components/join-session/join-session.com
     CourseViewComponent,
     CourseDetailsComponent,
     SessionViewComponent,
-    JoinSessionComponent
+    JoinSessionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

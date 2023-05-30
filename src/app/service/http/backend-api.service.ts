@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -14,6 +14,7 @@ import {
 
 export class BackendApiService { 
   private REST_API_SERVER = environment.backendUrl;
+  private REST_API_SERVERPYTHON = 'http://127.0.0.1:5000/'
 
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -42,6 +43,16 @@ export class BackendApiService {
     var json = JSON.stringify(params);
     return this.httpClient
       .post(this.REST_API_SERVER + url, json, { headers });
+  }
+  public postImgPython(url: string, params: any) {
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+    });
+    var json = JSON.stringify(params);
+    return this.httpClient
+      .post(this.REST_API_SERVERPYTHON + url, json, { headers });
   }
 
   public uploadImage(url: string, params: any) {

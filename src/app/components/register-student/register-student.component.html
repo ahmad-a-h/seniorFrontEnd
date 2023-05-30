@@ -33,9 +33,9 @@
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                                <mat-form-field appearance="outline">
+                                <mat-form-field appearance="outline" [ngClass]="{ 'ng-invalid': studentForm.get('photo')?.invalid }">
                                     <mat-label>Student Photo</mat-label>
-                                    <ngx-mat-file-input formControlName="photo" placeholder="Basic Input"
+                                    <ngx-mat-file-input formControlName="photo" placeholder="Basic Input" 
                                         (change)="onFileSelected($event)"></ngx-mat-file-input>
                                     <mat-icon matSuffix>attach_file</mat-icon>
                                 </mat-form-field>

@@ -1,6 +1,6 @@
 import { Component, ɵɵsetComponentScope } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BackendApiService } from 'src/app/service/backend-api.service';
+import { BackendApiService } from 'src/app/service/http/backend-api.service';
 import Swal from 'sweetalert2';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -26,7 +26,7 @@ export class RegisterStudentComponent {
       lName: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.required,Validators.email]),
       courseId: new FormControl('',[Validators.required]),
-      photo:new FormControl(),
+      photo:new FormControl([Validators.required]),
     })
   }
   ngOnInit() {
@@ -49,7 +49,13 @@ export class RegisterStudentComponent {
               timer: 1500
             })
           },(err)=>{
-            console.log('error')
+            Swal.fire({
+              icon: 'error',
+              title:'Insert Photo',
+              text: 'Please Insert a Photo To Register',
+              showConfirmButton: false,
+              timer: 3000
+            })
           })
           })
         },

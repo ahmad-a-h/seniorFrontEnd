@@ -15,7 +15,7 @@
     <div class="content" style="width: 50%;">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Session Params</mat-card-title>
+          <mat-card-title>Session Creation</mat-card-title>
         </mat-card-header>
         <mat-card-content style="display: flex; flex-direction:column">
           
@@ -26,12 +26,14 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
             <input matInput [ngxMatDatetimePicker]="start" placeholder="Start Date Time" [formControl]="startDate" />
             <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker #start></ngx-mat-datetime-picker>
           </mat-form-field>
           
           <mat-form-field appearance="outline">
+            <mat-label>End Date   </mat-label>
             <input matInput [ngxMatDatetimePicker]="end" placeholder="End date Time" [formControl]="endDate" />
             <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
             <ngx-mat-datetime-picker #end></ngx-mat-datetime-picker>
@@ -64,4 +66,4 @@
 <ng-template #empty>
   <!-- <div *ngIf=" this.courseForm.dirty">No session for table</div> -->
 </ng-template>
-<!-- (change)="onFileSelected($event)" -->
+<!-- (change)="onFileSelected($event)" -->
