@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendApiService } from 'src/app/service/http/backend-api.service';
-
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class JoinSessionComponent implements OnInit {
   videoFlag: boolean= true
   studentImg: string;
   dataForPython: {};
-  
+  arrDataAttended:any
   // cv: any;
 
   constructor(private service: BackendApiService, private router: Router) { }
@@ -25,6 +25,7 @@ export class JoinSessionComponent implements OnInit {
   ngOnInit() {
     this.getDataFromService()
     console.log(this.dataFromService)
+    this.getDataAttended()
   }
   async ngAfterViewInit() {
     this.startVideo();
@@ -72,26 +73,36 @@ export class JoinSessionComponent implements OnInit {
     const video: HTMLVideoElement = this.videoElement.nativeElement;
     const stream = video.srcObject as MediaStream;
     const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
+    const context = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  // Set the canvas dimensions to match the video element
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-
-  // Draw the current video frame onto the canvas
-  context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-  // Get the base64 representation of the canvas image
-  const base64DataUrl = canvas.toDataURL('image/png');
+    const base64DataUrl = canvas.toDataURL("image/jpeg", 1.0);
+  // this.studentImg = base64DataUrl;
   console.log(base64DataUrl)
-  this.studentImg = base64DataUrl;
-  console.log(this.dataFromService)
-
+    
   this.dataForPython = {
-    'image1_base64':this.studentImg,
+    'image1_base64':base64DataUrl,
     'arrStudent': this.dataFromService.course.students,
     'sessionId' : this.dataFromService.id
   }
 
+  this.service.postImgPython(this.dataForPython).subscribe((Response:any)=>{
+    Swal.fire({
+      icon: 'success',
+      position: 'top-end',
+      text: `${Response.student.fName} ${Response.student.id} Joined The Session!`,
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this.getDataAttended()
+  })
+  }
+  getDataAttended(){
+    this.service.get('getStudentsAttendenceBySessionId'+this.dataFromService.id).subscribe((Response)=>{
+      this.arrDataAttended = Response.body
+      console.log(this.arrDataAttended)
+    })
   }
 }

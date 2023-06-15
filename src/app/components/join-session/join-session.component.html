@@ -8,8 +8,14 @@
                         {{this.dataFromService.course.course_Name}} {{this.dataFromService.course.course_Code}}
                     </div>
                     <div style="margin-top: 20px;">
-                        <div><mat-label style="color: blue; margin-right: 5px;">Start Date: </mat-label>{{this.formatDateTime(this.dataFromService.startDateTime)}}</div>
-                        <div><mat-label style="color: blue; margin-right: 5px;">End Date: </mat-label>{{this.formatDateTime(this.dataFromService.endDateTime)}}</div>
+                        <div>
+                            <mat-label style="color: blue; margin-right: 5px;">Start Date: </mat-label>
+                            {{this.formatDateTime(this.dataFromService.startDateTime)}}
+                        </div>
+                        <div>
+                            <mat-label style="color: blue; margin-right: 5px;">End Date: </mat-label>
+                            {{this.formatDateTime(this.dataFromService.endDateTime)}}
+                        </div>
                     </div>
                 </div>
             </mat-card-subtitle>
@@ -26,14 +32,6 @@
                                             {{student.fName}} {{student.lName}}
                                         </div>
                                     </mat-panel-title>
-                                    <mat-panel-description>
-                                        <div>
-                                            <mat-label style="color: blue; margin-right: 5px; width: 100px;"> Student Id </mat-label>
-                                            {{student.id}}
-                                            <mat-label style="color: blue; margin-right: 5px;  width: 100px;"> Attended</mat-label>
-                                            Yes?No
-                                        </div>
-                                    </mat-panel-description>
                                 </div>
                             </mat-expansion-panel-header>
                             <div>
@@ -55,15 +53,49 @@
                     </mat-accordion>
                 </mat-card-content>
             </div>
-            
+
         </div>
-        
-       
+
+
 
     </mat-card>
     <div style="margin-left: 25px;display: flex;flex-direction: column;">
         <video #videoElement></video>
-        <button  mat-raised-button (click)="capture()" style="margin-top: 20px; background: rgb(254,199,1);">Check In</button>
+        <button mat-raised-button (click)="capture()" style="margin-top: 20px; background: rgb(254,199,1);">Check
+            In</button>
     </div>
 </div>
-
+<div style=" margin-top: 50px; margin-left: 30px; ">
+    <mat-card style=" width: 50%; ">
+        <mat-card-title>Attended Students</mat-card-title>
+        <mat-accordion *ngFor="let student of this.arrDataAttended">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <div style=" display: flex; justify-content: space-between; width: 80%; ">
+                        <mat-panel-title>
+                            <div style=" min-width: 100px; max-width: 200px; ">
+                                Student ID: {{student.studentId}}
+                            </div>
+                        </mat-panel-title>
+                    </div>
+                </mat-expansion-panel-header>
+                <div style="display: flex; ">
+                    <div style="color: blue;">
+                        Time Attended:
+                    </div>
+                     <div>
+                        {{student.timeAttended}}
+                     </div>
+                </div>
+                <div style="display: flex;"> 
+                    <div style="color: blue;">
+                        Match Percentage:
+                    </div> 
+                    <div>
+                        {{student.matchPerc}}
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card>
+</div>

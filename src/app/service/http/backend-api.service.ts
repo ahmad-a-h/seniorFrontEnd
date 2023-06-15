@@ -14,7 +14,7 @@ import {
 
 export class BackendApiService { 
   private REST_API_SERVER = environment.backendUrl;
-  private REST_API_SERVERPYTHON = 'http://127.0.0.1:5000/'
+  private REST_API_SERVERPYTHON = 'http://127.0.0.1:5000/compare'
 
   constructor(private readonly httpClient: HttpClient) { }
 
@@ -44,7 +44,7 @@ export class BackendApiService {
     return this.httpClient
       .post(this.REST_API_SERVER + url, json, { headers });
   }
-  public postImgPython(url: string, params: any) {
+  public postImgPython(params: any) {
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -52,7 +52,7 @@ export class BackendApiService {
     });
     var json = JSON.stringify(params);
     return this.httpClient
-      .post(this.REST_API_SERVERPYTHON + url, json, { headers });
+      .post(this.REST_API_SERVERPYTHON , json, { headers });
   }
 
   public uploadImage(url: string, params: any) {

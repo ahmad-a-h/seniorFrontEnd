@@ -7,6 +7,7 @@ import { CourseViewComponent } from './components/course-view/course-view.compon
 import { SessionsGroupComponent } from './components/sessions-nav-bar/nav-bar.component';
 import { JoinSessionComponent } from './components/join-session/join-session.component';
 import { LoginComponent } from './components/login/login.component';
+import { courseNavBarComponent } from './components/course-nav-bar/nav-bar.component';
 
 const routes: Routes = [
   { path: "", component: MasterPageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: "course", component: CourseViewComponent },
   { path: "courseDetails", component: CourseDetailsComponent },
   { path: "JoinSession", component: JoinSessionComponent },
+  { path: "courseNav", component: courseNavBarComponent },
   
 ];
 @NgModule({
